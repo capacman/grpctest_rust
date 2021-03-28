@@ -1,0 +1,16 @@
+syntax = "proto3";
+package test_service;
+
+
+service TestLoaderService {
+    rpc load(stream BinaryData) returns (TestResponse);
+}
+
+message BinaryData{
+    bytes data=1;
+}
+
+message TestResponse{
+    bool success=1;
+}
+
