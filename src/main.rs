@@ -6,6 +6,7 @@ use grpctest_rust::test_service::{
 };
 use tokio;
 use tokio_stream;
+use tonic::transport::Endpoint;
 #[tokio::main(flavor = "multi_thread", worker_threads = 4)]
 async fn main() -> AResult<()> {
     
@@ -25,12 +26,12 @@ async fn main() -> AResult<()> {
         }
         v
     };
-
+    
     loop {
-        let mut client = TestLoaderServiceClient::connect("http://localhost:9000").await?;
-        let result = client.load(tokio_stream::iter(stream.clone())).await?.into_inner();
+        let client = TestLoaderServiceClient::connect("http://localhost:9000").await?;    
+        let result = client.clone().load(tokio_stream::iter(stream.clone())).await?.into_inner();
         println!("response is {:?}",result);
-        tokio::time::sleep(Duration::from_millis(150)).await;
+        tokio::time::sleep(Duration::from_millis(60)).await;
     }
 
     Ok(())
