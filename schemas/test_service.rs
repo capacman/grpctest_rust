@@ -1,6 +1,8 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct BinaryData {
-    #[prost(bytes = "vec", tag = "1")]
+    #[prost(int32, tag = "1")]
+    pub value: i32,
+    #[prost(bytes = "vec", tag = "2")]
     pub data: ::prost::alloc::vec::Vec<u8>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]

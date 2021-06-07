@@ -7,7 +7,8 @@ service TestLoaderService {
 }
 
 message BinaryData{
-    bytes data=1;
+    int32 value=1;
+    bytes data=2;
 }
 
 message TestResponse{
